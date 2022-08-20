@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Todoey-->
+        <!--TodoList-->
         <scene sceneID="4Px-nT-eaa">
             <objects>
                 <tableViewController id="ptx-aW-NSQ" customClass="TodoListViewController" customModule="Todoey" customModuleProvider="target" sceneMemberID="viewController">
@@ -30,7 +30,14 @@
                             <outlet property="delegate" destination="ptx-aW-NSQ" id="ryZ-wn-j9I"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Todoey" id="STw-9m-Yt4"/>
+                    <navigationItem key="navigationItem" title="TodoList" id="STw-9m-Yt4">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="qgp-k5-XwB">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="addButtonPressed:" destination="ptx-aW-NSQ" id="Jq7-jq-U5F"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="38P-1f-VwH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
