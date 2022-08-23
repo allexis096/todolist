@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import CoreData
 
 class TodoListViewController: UITableViewController {
     var items: [Item] = [Item]()
     
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +52,11 @@ class TodoListViewController: UITableViewController {
         let alert = UIAlertController(title: "Add new Todo item", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Item", style: .default) { action in
             guard let text = textField.text, textField.text != "" else { return }
-            self.items.append(Item(title: text))
+            
+            let newItem = Item(context: self.context)
+            newItem.title = text
+            
+            self.items.append(newItem)
             
             self.saveItems()
             
@@ -72,25 +77,22 @@ class TodoListViewController: UITableViewController {
     }
     
     func saveItems() {
-        let encoder = PropertyListEncoder()
         do {
-            let data = try encoder.encode(self.items)
-            try data.write(to: self.dataFilePath!)
+            try context.save()
         } catch {
-            print("Error encoding item array: \(error.localizedDescription)")
+            print("Error saving context: \(error.localizedDescription)")
         }
         
         self.tableView.reloadData()
     }
     
     func loadItems() {
-        guard let data = try? Data(contentsOf: dataFilePath!) else { return }
-        let decoder = PropertyListDecoder()
+        let request: NSFetchRequest<Item> = Item.fetchRequest()
         
         do {
-            items = try decoder.decode([Item].self, from: data)
+            items = try context.fetch(request)
         } catch {
-            print("Error decoding item array: \(error.localizedDescription)")
+            print("Error fetching data from context: \(error.localizedDescription)")
         }
     }
 }
