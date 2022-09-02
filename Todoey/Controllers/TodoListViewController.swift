@@ -59,8 +59,6 @@ class TodoListViewController: UITableViewController {
             self.items.append(newItem)
             
             self.saveItems()
-            
-            self.tableView.reloadData()
         }
         
         let dismiss = UIAlertAction(title: "Cancel", style: .cancel) { action in
@@ -79,20 +77,40 @@ class TodoListViewController: UITableViewController {
     func saveItems() {
         do {
             try context.save()
+            tableView.reloadData()
         } catch {
             print("Error saving context: \(error.localizedDescription)")
         }
-        
-        self.tableView.reloadData()
     }
     
-    func loadItems() {
-        let request: NSFetchRequest<Item> = Item.fetchRequest()
-        
+    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest()) {
         do {
             items = try context.fetch(request)
+            tableView.reloadData()
         } catch {
             print("Error fetching data from context: \(error.localizedDescription)")
+        }
+    }
+}
+
+//MARK: - SearchBarDelegate
+
+extension TodoListViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let request: NSFetchRequest<Item> = Item.fetchRequest()
+        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        
+        loadItems(with: request)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadItems()
+            
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
         }
     }
 }

@@ -14,6 +14,7 @@
 		AD5871A128B04E6300DDA0AB /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD58719F28B04E6300DDA0AB /* DataModel.xcdatamodeld */; };
 		AD5871A328B04E6400DDA0AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD5871A228B04E6400DDA0AB /* Assets.xcassets */; };
 		AD5871A628B04E6400DDA0AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5871A428B04E6400DDA0AB /* LaunchScreen.storyboard */; };
+		ADA02AE628C17B1000CA34E5 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA02AE528C17B1000CA34E5 /* CategoryTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		AD5871A228B04E6400DDA0AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD5871A528B04E6400DDA0AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD5871A728B04E6400DDA0AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ADA02AE528C17B1000CA34E5 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		AD5871B028B2F41200DDA0AB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				ADA02AE528C17B1000CA34E5 /* CategoryTableViewController.swift */,
 				AD58719A28B04E6300DDA0AB /* TodoListViewController.swift */,
 			);
 			path = Controllers;
@@ -175,6 +178,7 @@
 			files = (
 				AD58719B28B04E6300DDA0AB /* TodoListViewController.swift in Sources */,
 				AD58719728B04E6300DDA0AB /* AppDelegate.swift in Sources */,
+				ADA02AE628C17B1000CA34E5 /* CategoryTableViewController.swift in Sources */,
 				AD58719928B04E6300DDA0AB /* SceneDelegate.swift in Sources */,
 				AD5871A128B04E6300DDA0AB /* DataModel.xcdatamodeld in Sources */,
 			);
